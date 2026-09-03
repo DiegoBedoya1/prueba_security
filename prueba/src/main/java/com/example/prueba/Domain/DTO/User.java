@@ -8,6 +8,15 @@ public class User {
     private String password;
     private Role role;
 
+    public User(Long id, String name, String mail, String cellphone, String password, Role role) {
+        this.id = id;
+        this.name = name;
+        this.mail = mail;
+        this.cellphone = cellphone;
+        this.password = password;
+        this.role = role;
+    }
+
     public Long getId() {
         return id;
     }

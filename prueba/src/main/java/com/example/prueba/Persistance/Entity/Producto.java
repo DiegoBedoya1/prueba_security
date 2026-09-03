@@ -2,31 +2,20 @@ package com.example.prueba.Persistance.Entity;
 
 import com.example.prueba.ENUMS.Categoria;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Table(name = "prodcuto")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "producto")
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
     private String nombre;
     private String descripcion;
-    @NotNull
+    @Enumerated(EnumType.STRING)
     private Categoria categoria;
     private Double precio;
     @Column(name = "stock", nullable = false)
     private Integer stock;
-    @NotNull
     private Boolean disponible = true;
 
     public Long getId() {

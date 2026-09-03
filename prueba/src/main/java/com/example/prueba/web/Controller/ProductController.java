@@ -2,11 +2,13 @@ package com.example.prueba.web.Controller;
 
 import com.example.prueba.Domain.DTO.Product;
 import com.example.prueba.Domain.Service.ProductService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@RestController
-//@RequestMapping("/products")
+@RestController
+@RequestMapping("/products")
 public class ProductController {
     private final ProductService service;
 
@@ -14,8 +16,8 @@ public class ProductController {
         this.service = service;
     }
 
-    //@PutMapping("/update/{i}")
-    public ResponseEntity<Product>  updateProduct(@RequestBody Product product, @PathVariable long id){
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Product> updateProduct(@RequestBody Product product, @PathVariable long id){
         return ResponseEntity.ok(service.updateProduct(id,product));
     }
 
@@ -23,4 +25,11 @@ public class ProductController {
     public ResponseEntity<List<Product>> showAvailables(){
         return ResponseEntity.ok(service.showAllAvailable());
     }
+
+    @PostMapping("/new")
+    public ResponseEntity<Product> create(@RequestBody Product product){
+        return ResponseEntity.ok(service.create(product));
+    }
+
+
 }

@@ -6,10 +6,21 @@ import com.example.prueba.ENUMS.Categoria;
 public class Product {
     private Long id;
     private String name;
-    private String despcription;
+    private String description;
     private Categoria category;
     private Double price;
+    private Integer stock;
     private Boolean available;
+
+    public Product(Long id, String name, String description, Categoria category, Double price, Integer stock, Boolean available) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.category = category;
+        this.price = price;
+        this.stock = stock;
+        this.available = available;
+    }
 
     public Long getId() {
         return id;
@@ -27,12 +38,12 @@ public class Product {
         this.name = name;
     }
 
-    public String getDespcription() {
-        return despcription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDespcription(String despcription) {
-        this.despcription = despcription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Categoria getCategory() {
@@ -57,5 +68,13 @@ public class Product {
 
     public void setAvailable(Boolean available) {
         this.available = available;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 }

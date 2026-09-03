@@ -3,6 +3,8 @@ package com.example.prueba.Domain.DTO;
 import com.example.prueba.ENUMS.Estado;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Order {
     private Long id;
@@ -10,6 +12,7 @@ public class Order {
     private LocalDateTime orderDate;
     private Double total;
     private Estado state;
+    private List<OrderDetail> details = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -49,5 +52,13 @@ public class Order {
 
     public void setState(Estado state) {
         this.state = state;
+    }
+
+    public List<OrderDetail> getDetails() {
+        return details;
+    }
+
+    public void setDetails(List<OrderDetail> details) {
+        this.details = details;
     }
 }

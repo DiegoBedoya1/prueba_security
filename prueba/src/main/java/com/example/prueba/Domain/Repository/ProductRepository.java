@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface ProductRepository {
     Product update(long id, Product product);
     List<Product> showAllAvailable();
+    Product create(Product product);
 }

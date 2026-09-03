@@ -5,19 +5,25 @@ import com.example.prueba.Persistance.Entity.Producto;
 
 import java.util.List;
 
-//@Mapper(componentModel = "spring")
+import org.mapstruct.InheritInverseConfiguration;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
+
+
+@Mapper(componentModel = "spring")
 public interface ProductoMapper {
 
-   /* @Mappings({
+   @Mappings({
             @Mapping(source = "nombre", target = "name"),
             @Mapping(source = "descripcion", target = "description"),
             @Mapping(source = "categoria", target = "category"),
             @Mapping(source = "precio", target = "price"),
             @Mapping(source = "disponible", target = "available")
-    })*/
+    })
     Product toProduct(Producto producto);
 
-    //@InheriteInverseConfiguration
+    @InheritInverseConfiguration
     Producto toProducto(Product product);
 
     List<Product> toProducts(List<Producto> productos);

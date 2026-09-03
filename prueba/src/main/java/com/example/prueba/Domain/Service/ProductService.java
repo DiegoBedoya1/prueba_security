@@ -2,11 +2,11 @@ package com.example.prueba.Domain.Service;
 
 import com.example.prueba.Domain.DTO.Product;
 import com.example.prueba.Domain.Repository.ProductRepository;
-import com.example.prueba.ProductoRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-//@Service
+@Service
 public class ProductService {
     private final ProductRepository repo;
 
@@ -20,5 +20,9 @@ public class ProductService {
 
     public List<Product> showAllAvailable(){
         return repo.showAllAvailable();
+    }
+
+    public Product create(Product product){
+        return repo.create(product);
     }
 }
