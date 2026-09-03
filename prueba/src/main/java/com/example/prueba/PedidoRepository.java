@@ -80,9 +80,6 @@ public class PedidoRepository implements OrderRepository {
         }
         for(DetallePedido detalle: pedido.getDetalles()){
             Producto producto = detalle.getProducto();
-            if(producto.getStock()<0){
-                throw new RuntimeException("el producto "+producto.getNombre() + " no cuenta con stock");
-            }
             producto.setStock(producto.getStock() - detalle.getCantidad());
             crudProdu.save(producto);
         }
