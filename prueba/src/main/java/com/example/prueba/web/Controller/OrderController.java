@@ -42,4 +42,9 @@ public class OrderController {
         return ResponseEntity.ok(service.confirm(id));
     }
 
+    @PostMapping("/new")
+    public ResponseEntity<Order> create(@RequestBody  Order order){
+        return ResponseEntity.ok(service.create(order));
+    }
+
 }

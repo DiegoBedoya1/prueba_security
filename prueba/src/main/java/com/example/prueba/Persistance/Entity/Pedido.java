@@ -23,6 +23,16 @@ public class Pedido {
     @OneToMany(mappedBy = "pedido")
     private List<DetallePedido> detalles = new ArrayList<>();
 
+    public Pedido() {}
+
+    public Pedido(Usuario usuario, LocalDateTime fechaPedido, Double total, Estado estado, List<DetallePedido> detalles) {
+        this.usuario = usuario;
+        this.fechaPedido = fechaPedido;
+        this.total = total;
+        this.estado = estado;
+        this.detalles = detalles;
+    }
+
     public Long getId() {
         return id;
     }

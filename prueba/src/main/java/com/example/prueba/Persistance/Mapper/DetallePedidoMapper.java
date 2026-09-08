@@ -7,6 +7,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring", uses = {ProductoMapper.class})
 public interface DetallePedidoMapper {
 
@@ -19,4 +21,7 @@ public interface DetallePedidoMapper {
 
     @InheritInverseConfiguration
     DetallePedido toDetallePedido(OrderDetail orderDetail);
+
+    List<OrderDetail> toOrderDetails(List<DetallePedido> detallePedidos);
+    List<DetallePedido> toDetallePedidos(List<OrderDetail> orderDetails);
 }

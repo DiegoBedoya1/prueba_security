@@ -1,10 +1,18 @@
 package com.example.prueba.Domain.DTO;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
 public class User {
     private Long id;
+    @NotBlank(message = "el nombre es obligatorio")
     private String name;
+    @NotBlank(message = "el correo debe de ser obligatorio")
+    @Email(message = "el correo no tiene formato valido")
     private String mail;
+    @NotBlank(message = "el telefono es obligatorio")
     private String cellphone;
+    @NotBlank(message = "la contraseña es obligatoria")
     private String password;
     private Role role;
 

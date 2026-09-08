@@ -2,6 +2,7 @@ package com.example.prueba.web.Controller;
 
 import com.example.prueba.Domain.DTO.User;
 import com.example.prueba.Domain.Service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +19,7 @@ public class UserController {
     }
 
     @PostMapping("/new")
-    public ResponseEntity<User> create(@RequestBody User user){
+    public ResponseEntity<User> create( @Valid @RequestBody User user){
         return ResponseEntity.ok(service.create(user));
     }
 }

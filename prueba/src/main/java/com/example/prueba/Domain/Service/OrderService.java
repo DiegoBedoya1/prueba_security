@@ -34,4 +34,8 @@ public class OrderService {
     public Order confirm(long id){
         return repo.confirm(id);
     }
+
+    public Order create(Order order){
+        return repo.create(order);
+    }
 }
