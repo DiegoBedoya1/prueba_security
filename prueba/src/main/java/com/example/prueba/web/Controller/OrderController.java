@@ -3,11 +3,14 @@ package com.example.prueba.web.Controller;
 import com.example.prueba.Domain.DTO.Order;
 import com.example.prueba.Domain.Service.OrderService;
 import com.example.prueba.ENUMS.Estado;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@SecurityRequirement(name = "Bearer Authentication")
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
@@ -18,8 +21,8 @@ public class OrderController {
     }
 
     @GetMapping("/all/{id}")
-    public ResponseEntity<List<Order>> showOrders(@PathVariable long id){
-        return ResponseEntity.ok(service.showOrders(id));
+    public ResponseEntity<List<Order>> showOrders(@PathVariable long id, Authentication authentication) {
+        return ResponseEntity.ok(service.showOrders(id, authentication));
     }
 
     @PutMapping("/delivered/{id}")
@@ -33,8 +36,8 @@ public class OrderController {
     }
 
     @PutMapping("/cancel/{id}")
-    public ResponseEntity<Order> cancel(@PathVariable long id){
-        return ResponseEntity.ok(service.cancel(id));
+    public ResponseEntity<Order> cancel(@PathVariable long id, Authentication authentication){
+        return ResponseEntity.ok(service.cancel(id, authentication));
     }
 
     @PutMapping("confirm/{id}")
@@ -43,8 +46,8 @@ public class OrderController {
     }
 
     @PostMapping("/new")
-    public ResponseEntity<Order> create(@RequestBody  Order order){
-        return ResponseEntity.ok(service.create(order));
+    public ResponseEntity<Order> create(@RequestBody  Order order, Authentication authentication){
+        return ResponseEntity.ok(service.create(order, authentication));
     }
 
 }

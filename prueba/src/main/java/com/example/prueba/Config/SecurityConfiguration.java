@@ -7,13 +7,20 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
+    private final JWTFilter filter;
+
+    public SecurityConfiguration(JWTFilter filter) {
+        this.filter = filter;
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -24,8 +31,38 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
          http
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll());
+                 .sessionManagement(session ->
+                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                 .authorizeHttpRequests(auth -> auth
+                         .requestMatchers(
+                                 "/auth/**",
+                                 "/users/new",
+                                 "/swagger-ui/**",
+                                 "/v3/api-docs/**"
+                         ).permitAll()
+
+                         .requestMatchers(
+                                 "/products/new",
+                                 "/products/update/**",
+                                 "/orders/state/**",
+                                 "/orders/confirm/**",
+                                 "/orders/delivered/**"
+                         ).hasRole("ADMIN")
+
+                         .requestMatchers(
+                                 "/products/availables",
+                                 "/orders/new",
+                                 "/products/all/**"
+                         ).hasAnyRole("ADMIN", "CLIENTE")
+
+                         .requestMatchers(
+                                 "/orders/all/**",
+                                 "/orders/cancel/**"
+                         ).hasAnyRole("ADMIN", "CLIENTE")
+
+                         .anyRequest().authenticated()
+                 )
+                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
@@ -35,3 +72,28 @@ public class SecurityConfiguration {
     }
 
 }
+
+
+
+
+
+
+/*{
+        "user": {
+        "id": "9"
+        },
+        "details": [
+        {
+        "product": {
+        "id": 1
+        },
+        "quantity": 2
+        },
+        {
+        "product": {
+        "id": 3
+        },
+        "quantity": 1
+        }
+        ]
+        }*/

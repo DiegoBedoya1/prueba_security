@@ -2,11 +2,14 @@ package com.example.prueba.web.Controller;
 
 import com.example.prueba.Domain.DTO.Product;
 import com.example.prueba.Domain.Service.ProductService;
+import com.example.prueba.ENUMS.Categoria;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@SecurityRequirement(name = "Bearer Authentication")
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -29,6 +32,11 @@ public class ProductController {
     @PostMapping("/new")
     public ResponseEntity<Product> create(@RequestBody Product product){
         return ResponseEntity.ok(service.create(product));
+    }
+
+    @GetMapping("/all/{category}")
+    public ResponseEntity<List<Product>> showByCategory(@PathVariable Categoria category){
+        return ResponseEntity.ok(service.showByCategory(category));
     }
 
 

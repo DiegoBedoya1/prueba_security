@@ -20,7 +20,7 @@ public class Pedido {
     private Double total;
     @Enumerated(EnumType.STRING)
     private Estado estado;
-    @OneToMany(mappedBy = "pedido")
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<DetallePedido> detalles = new ArrayList<>();
 
     public Pedido() {}

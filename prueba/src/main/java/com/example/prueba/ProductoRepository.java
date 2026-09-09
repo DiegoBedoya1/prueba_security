@@ -2,6 +2,7 @@ package com.example.prueba;
 
 import com.example.prueba.Domain.DTO.Product;
 import com.example.prueba.Domain.Repository.ProductRepository;
+import com.example.prueba.ENUMS.Categoria;
 import com.example.prueba.Persistance.Crud.ProductoCrudRepository;
 import com.example.prueba.Persistance.Entity.Producto;
 import com.example.prueba.Persistance.Mapper.ProductoMapper;
@@ -61,6 +62,10 @@ public class ProductoRepository implements ProductRepository {
                 product.getAvailable());
         Producto guardado = crud.save(mapper.toProducto(produ));
         return mapper.toProduct(guardado);
+    }
+    @Override
+    public List<Product> showByCategory(Categoria categoria){
+        return mapper.toProducts(crud.findAllByCategoria(categoria));
     }
 }
 

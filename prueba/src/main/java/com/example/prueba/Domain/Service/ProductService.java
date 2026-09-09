@@ -2,6 +2,7 @@ package com.example.prueba.Domain.Service;
 
 import com.example.prueba.Domain.DTO.Product;
 import com.example.prueba.Domain.Repository.ProductRepository;
+import com.example.prueba.ENUMS.Categoria;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,5 +25,9 @@ public class ProductService {
 
     public Product create(Product product){
         return repo.create(product);
+    }
+
+    public List<Product> showByCategory(Categoria categoria){
+        return repo.showByCategory(categoria);
     }
 }
