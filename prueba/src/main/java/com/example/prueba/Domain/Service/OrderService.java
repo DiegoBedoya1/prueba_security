@@ -7,11 +7,13 @@ import com.example.prueba.Persistance.Crud.PedidoCrudRepository;
 import com.example.prueba.Persistance.Crud.UsuarioCrudRepository;
 import com.example.prueba.Persistance.Entity.Pedido;
 import com.example.prueba.Persistance.Entity.Usuario;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class OrderService {
     private final OrderRepository repo;

@@ -129,5 +129,17 @@
     <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-core:7.1.1" level="project" />
     <orderEntry type="library" name="Gradle: io.jsonwebtoken:jjwt-api:0.13.0" level="project" />
     <orderEntry type="library" name="Gradle: io.swagger.core.v3:swagger-annotations-jakarta:2.2.52" level="project" />
+    <orderEntry type="library" name="Gradle: org.mockito:mockito-core:5.23.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.mockito:mockito-junit-jupiter:5.23.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.junit.jupiter:junit-jupiter-api:6.0.3" level="project" />
+    <orderEntry type="module-library" scope="PROVIDED">
+      <library>
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

@@ -38,7 +38,9 @@ public class SecurityConfiguration {
                                  "/auth/**",
                                  "/users/new",
                                  "/swagger-ui/**",
-                                 "/v3/api-docs/**"
+                                 "/v3/api-docs/**",
+                                 "/actuator/health",
+                                 "/actuator/info"
                          ).permitAll()
 
                          .requestMatchers(
@@ -46,7 +48,8 @@ public class SecurityConfiguration {
                                  "/products/update/**",
                                  "/orders/state/**",
                                  "/orders/confirm/**",
-                                 "/orders/delivered/**"
+                                 "/orders/delivered/**",
+                                 "/actuator/metrics/**"
                          ).hasRole("ADMIN")
 
                          .requestMatchers(
